@@ -4,6 +4,9 @@ class HouseController < ApplicationController
   end
 
   def show
+    @house = House.find(params[:id])
+    @users = @house.users
+#    @users = User.where(:house_id => @house.id)
   end
 
   def create

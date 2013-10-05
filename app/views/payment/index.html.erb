@@ -1,0 +1,8 @@
+<h1>Payments</h1>
+<ul>
+	<% @payments.each do |p| %>
+		<li>
+			<p> User with id <%= p.from_id %> paid <%= displayAmount(p.amount) %> to user with id <%= p.to_id %> within house <%= p.house_id %></p>
+		</li>
+	<% end %>
+</ul>

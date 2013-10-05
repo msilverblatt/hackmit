@@ -1,4 +1,5 @@
 Rentsplitter::Application.routes.draw do
+  resources :payment
   resources :bill
   resources :user
   resources :house
