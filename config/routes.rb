@@ -1,4 +1,9 @@
 Rentsplitter::Application.routes.draw do
+  get "bill/index"
+  get "bill/show"
+  get "bill/create"
+  get "bill/destroy"
+  get "bill/update"
   resources :user
   resources :house
   # The priority is based upon order of creation: first created -> highest priority.
