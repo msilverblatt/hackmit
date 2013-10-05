@@ -3,6 +3,7 @@ Rentsplitter::Application.routes.draw do
   resources :bill
   resources :user
   resources :house
+  post 'house/:id' => 'house#save_user'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

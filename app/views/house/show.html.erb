@@ -6,6 +6,23 @@
 			<li><%= u.username %></li>
 		<% end %>
 	<% end %>
+	<%= form_for @user, url: { action: "save_user" } do |f| %>
+  		<div class="field">
+    		<%= f.label :username %><br>
+    		<%= f.text_field :username %>
+  		</div>
+  		<div class="field">
+    		<%= f.label :email %><br>
+    		<%= f.text_field :email %>
+  		</div>
+  		<div class="field">
+			<%= f.hidden_field :house_id, value: @house.id %>
+			<%= f.hidden_field :balance, value: "0" %>
+		</div>
+  		<div class="actions">
+    		<%= f.submit %>
+  		</div>
+	<% end %>
 </ul>
 
 <h3>Bills:</h3>
