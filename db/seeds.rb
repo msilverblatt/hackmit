@@ -8,5 +8,5 @@
 
 #House.create(name: "65 Chetwynd Rd")
 #House.create(name: "20 Fletcher Pl")
-User.create(username: "michael", balance: "0", email: "msilverblatt@gmail.com", house_id: "1")
-User.create(username: "jackson", balance: "0", email: "jackson.maslow@gmail.com", house_id: "2")
+#User.create(username: "michael", balance: "0", email: "msilverblatt@gmail.com", house_id: "1")
+#User.create(username: "jackson", balance: "0", email: "jackson.maslow@gmail.com", house_id: "2")
