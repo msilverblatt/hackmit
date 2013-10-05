@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131005185948) do
+ActiveRecord::Schema.define(version: 20131005191549) do
 
   create_table "bills", force: true do |t|
     t.string   "title"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20131005185948) do
 
   create_table "houses", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", force: true do |t|
+    t.integer  "to_id"
+    t.integer  "from_id"
+    t.integer  "amount"
+    t.integer  "house_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  to_id: 
+  from_id: 
+  amount: 
+  house_id: 1
+
+two:
+  to_id: 
+  from_id: 
+  amount: 
+  house_id: 1
