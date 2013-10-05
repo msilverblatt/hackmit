@@ -1,2 +1,10 @@
-<h1>Bill#index</h1>
-<p>Find me in app/views/bill/index.html.erb</p>
+<h1>Bills</h1>
+<ul>
+	<% @bills.each do |b| %>
+		<li>
+			<h5><%= b.title %></h5>
+			<p><%= b.description %></p>
+			<p>Paid by user with id <%= b.user_id %> in house with id <%= b.house_id %></p>
+		</li>
+	<% end %>
+</ul>
