@@ -7,3 +7,21 @@
 		<% end %>
 	<% end %>
 </ul>
+
+<h3>Bills:</h3>
+<ul>
+	<% if @bills != nil %>
+		<% @bills.each do |b| %>
+			<li>Bill for <%= b.title %>, <%= displayAmount(b.amount) %> paid by <%= b.user.username %></li>
+		<% end %>
+	<% end %>
+</ul>
+
+<h3>Payments:</h3>
+<ul>
+	<% if @payments != nil %>
+		<% @payments.each do |p| %>
+			<li><%= @users.where(:id => p.from_id).first.username %> paid <%= displayAmount(p.amount) %> to <%= @users.where(:id => p.to_id).first.username %></li>
+		<% end %>
+	<% end %>
+</ul>
