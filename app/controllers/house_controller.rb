@@ -9,6 +9,7 @@ class HouseController < ApplicationController
     @bills = @house.bills
     @payments = @house.payments
     @user = User.new
+    @bill = Bill.new
   end
 
   def new
@@ -29,6 +30,14 @@ class HouseController < ApplicationController
     end
   end
 
+  def save_attr
+      if params[:user]
+          save_user
+      elsif params[:bill]
+          save_bill
+      end
+  end 
+
   def save_user
    
     @user = User.new(params[:user].permit(:username, :email, :balance, :house_id))
@@ -43,6 +52,25 @@ class HouseController < ApplicationController
     end
   end
 
+  def save_bill
+    @bill = Bill.new(params[:bill].permit(:user_id, :house_id, :title, :description, :amount))
+    @bill.amount = @bill.amount * 100
+    if @bill.save
+      @bill.house.users.each do |u|
+        if u.id == @bill.user_id
+          User.update(u.id, :balance => (u.balance + ((@bill.amount / @bill.house.users.count)  * (@bill.house.users.count - 1))))
+#          u.balance += (@bill.amount * ((@bill.house.users.count - 1) / @bill.house.users.count))
+        else
+          User.update(u.id, :balance => (u.balance - (@bill.amount / @bill.house.users.count)))
+#          u.balance -= (@bill.amount / @bill.house.users.count)
+        end
+#        u.save
+      end
+      redirect_to @bill.house
+    else 
+  #    flash[:error] "ERROR"
+    end
+  end
 
   def destroy
   end

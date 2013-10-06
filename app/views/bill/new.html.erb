@@ -1,0 +1,39 @@
+<h1>Make a bill</h1>
+
+<%= form_for @bill, url: { action: "create" } do |f| %>
+   <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :name %>
+  </div>
+ <div class="field">
+  	<%= f.label :title %>
+  	<%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+  	<%= f.label :description %>
+  	<%= f.text_field :description %>
+  </div>
+
+   <div class="field">
+  	<%= f.label :amount %>
+  	<%= f.text_field :amount %>
+  </div>
+
+
+<div class="field">
+			<%= f.hidden_field :house_id, value: @house.id %>
+			<%= f.hidden_field :user_id, value: @user.id %>
+		</div>
+  
+
+ <div class="field">
+  		
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

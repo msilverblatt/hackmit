@@ -1,16 +1,36 @@
-<h1>House: <%= @house.name %></h1>
+<div class="row-fluid">
+	<div class="col-md-1">
+		<h3>House: <%= @house.name %></h1>
+	</div>
+<div class="col-md-3 col-md-offset-1">
+
 <h3>Members:</h3>
 <ul>
 	<% if @users != nil %>
 		<% @users.each do |u| %>
-			<li><%= u.username %></li>
+			<li><%= u.username %>, balance: <%= displayAmount(u.balance) %></li>
 		<% end %>
 	<% end %>
-	<%= form_for @user, url: { action: "save_user" } do |f| %>
+
+	<a data-toggle="modal" href="#user-form" class="btn btn-primary btn-lg">Add member</a>
+
+
+	<div class="modal fade" id="user-form">
+	<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add member</h4>
+        </div>
+    <div class="modal-body">
+	<%= form_for @user, url: { action: "save_attr" } do |f| %>
+  		
+
   		<div class="field">
     		<%= f.label :username %><br>
     		<%= f.text_field :username %>
   		</div>
+
   		<div class="field">
     		<%= f.label :email %><br>
     		<%= f.text_field :email %>
@@ -19,12 +39,16 @@
 			<%= f.hidden_field :house_id, value: @house.id %>
 			<%= f.hidden_field :balance, value: "0" %>
 		</div>
+	</div>
+	<div class="modal-footer">
   		<div class="actions">
     		<%= f.submit %>
   		</div>
+  	</div>
 	<% end %>
 </ul>
-
+</div>
+<div class="col-md-3">
 <h3>Bills:</h3>
 <ul>
 	<% if @bills != nil %>
@@ -32,8 +56,62 @@
 			<li>Bill for <%= b.title %>, <%= displayAmount(b.amount) %> paid by <%= b.user.username %></li>
 		<% end %>
 	<% end %>
-</ul>
 
+	<div class="modal fade" id="bill-form">
+	<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add bill</h4>
+        </div>
+    <div class="modal-body">
+		<%= form_for @bill, url: { action: "save_attr" } do |f| %>
+
+ 	<div class="field">
+  		<%= f.label :title %>
+  		<%= f.text_field :title %>
+  	</div>
+
+  	<div class="field">
+  		<%= f.label :description %>
+  		<%= f.text_field :description %>
+  	</div>
+
+   	<div class="field">
+  		<%= f.label :amount %>
+  		<%= f.text_field :amount %>
+  	</div>
+
+  	<div class="field">
+  		<%= f.hidden_field :house_id, value: @house.id %>
+  	</div>
+  		<div class="field">	
+  			<%= f.label "Paid by:" %>
+  			<br />
+  			<% @users.each do |u| %>
+    			<%= f.radio_button :user_id, u.id %><%= " " + u.username  %>
+    			<br />
+    		<% end %>
+  	</div>
+  
+
+ <div class="modal-footer">
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+	</div>
+	</div>
+	</div>
+</div>
+</div>	
+
+<a data-toggle="modal" href="#bill-form" class="btn btn-primary btn-lg">Add bill</a>
+
+
+</ul>
+</div>
+<div class="col-md-3">
 <h3>Payments:</h3>
 <ul>
 	<% if @payments != nil %>
@@ -42,3 +120,5 @@
 		<% end %>
 	<% end %>
 </ul>
+</div>
+</div>
