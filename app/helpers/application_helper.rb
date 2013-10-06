@@ -21,7 +21,7 @@ module ApplicationHelper
 			if cents < 10
 				return negstr + "$" + "00.0" + cents.to_s
 			else
-				return negstr + "$" + "00." + cents.to_s
+				return negstr + "$" + "0." + cents.to_s
 			end
 		end
 	end
